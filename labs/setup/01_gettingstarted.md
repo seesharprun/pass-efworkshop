@@ -1,8 +1,8 @@
 # Getting Started: Configuring Your Development Environment and Database
 
-> **Important**: Prior to getting starting with the practices and labs, you should first complete this initial practice. The database you create in this practice will be used for subsequent work.
+> **Important**: Prior to getting starting with the practices, you should first complete this initial practice. The database you create in this practice will be used for subsequent work.
 
- Install Visual Studio 2017 Community Edition
+## Install Visual Studio 2017 Community Edition
 
 We will use Visual Studio 2017 Community Edition to complete the various labs in this course. In this task, we will install the required workloads as part of the Visual Studio installation process.
 
@@ -28,7 +28,7 @@ We will use Visual Studio 2017 Community Edition to complete the various labs in
 1. On the settings page, select the development settings and theme that you prefer. Click the **Start Visual Studio** button to launch the Visual Studio Integrated Development Environment (IDE).
 1. You should now see the **Start Page**. This will serve as confirmation that Visual Studio was installed successfully.
 
- Validate SQL Server 2016 LocalDb Installation
+## Validate SQL Server 2016 LocalDb Installation
 
 SQL Server 2016 LocalDb is routinely installed as part of your Visual Studio installation. In this task, we will validate that the installation was successful.
 
@@ -54,7 +54,7 @@ SQL Server 2016 LocalDb is routinely installed as part of your Visual Studio ins
 	```
 1. Click the **green arrow** button to **Execute** the query. The query should return the version of the running SQL Server instance as it's scalar result.
 
- Import Contoso Database
+## Import Contoso Database
 
 We will use an example database for the ficitional Contoso corporation throughout the course. In this task, we will install the schema and data necessary for the database.
 

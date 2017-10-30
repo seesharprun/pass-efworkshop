@@ -8,13 +8,13 @@
     1. At the top of the dialog, select **.NET Framework 4.6.2** as your .NET version.
     1. Expand the **Templates** node, expand the **Visual C#** node, and then select the **Windows Classic Desktop** node. 
     1. Select the **Console App (.NET Framework)** template.
-    1. In the **Name** box, enter the value **edX.DataApp.Console**.
+    1. In the **Name** box, enter the value **PASS.DataApp.Console**.
     1. Ensure that the checkbox next to the **Create directory for solution** statement is selected.
     1. Click the **OK** button.
 1. Wait for Visual Studio to create the new **solution** and **project**.
 1. Once the project has been created, Visual Studio will automatically open the **Program.cs** class file. Leave this file open.
 1. Click the **View** menu at the top of the Visual Studio window and then select the **Solution Explorer** option.
-1. In the **Solution Explorer** pane, expand the **edX.DataApp.Console** project to reveal the project files. 
+1. In the **Solution Explorer** pane, expand the **PASS.DataApp.Console** project to reveal the project files. 
 
 ## Implementing Base ADO.NET Logic
 

@@ -1,28 +1,28 @@
-# Getting Started: Referencing Entity Framework Core in your .NET Core Application
+# Getting Started: Referencing Entity Framework in your .NET Application
 
-## Creating a .NET Core Console Application
+## Creating a .NET Console Application
 
 1. Open **Visual Studio 2017**.
 1. At the top of the Visual Studio window; click the **File** menu, hover over the **New** menu option and then select the **Project...** menu option.
 1. In the **New Project** dialog, perform the following actions:
-    1. Expand the **Templates** node, expand the **Visual C#** node, and then select the **.NET Core** node. 
-    1. Select the **Console App (.NET Core)** template.
-    1. In the **Name** box, enter the value **edX.DataApp.CoreConsole**.
+    1. Expand the **Templates** node, expand the **Visual C#** node, and then select the **Windows Classic Desktop** node. 
+    1. Select the **Console App (.NET Framework)** template.
+    1. In the **Name** box, enter the value **PASS.DataApp.DXConsole**.
     1. Ensure that the checkbox next to the **Create directory for solution** statement is selected.
     1. Click the **OK** button.
 1. Wait for Visual Studio to create the new **solution** and **project**.
 1. Once the project has been created, Visual Studio will automatically open the **Program.cs** class file. Leave this file open.
 
-## Adding the Entity Framework Core Library
+## Adding the Entity Framework Library
 
 1. Click the **View** menu at the top of the Visual Studio window and then select the **Solution Explorer** option.
-1. In the **Solution Explorer** pane, expand the **edX.DataApp.Lab.CoreConsole** project to reveal the project files.
-1. Right-click the **Dependencies** node and select the **Manage NuGet Packages...** menu option.
+1. In the **Solution Explorer** pane, expand the **PASS.DataApp.DXConsole** project to reveal the project files.
+1. Right-click the **References** node and select the **Manage NuGet Packages...** menu option.
 1. In the **NuGet Package Manager** dialog, click the **Browse** tab.
 1. In the **Browse** tab, perform the following actions:
-    1. In the **Search** box, enter the text **EntityFrameworkCore** and then press the *Enter/Return* key.
-    1. In the search results, locate and select the **Microsoft.EntityFramework.Core.SqlServer by Microsoft** result. A pane will appear to the right with details about the package.
-    1. In the pane, select the **1.1.1** version.
+    1. In the **Search** box, enter the text **EntityFramework** and then press the *Enter/Return* key.
+    1. In the search results, locate and select the **EntityFramework by Microsoft** result. A pane will appear to the right with details about the package.
+    1. In the pane, select the **6.2.0** version.
     1. Click the **Install** button.
     1. In the **Preview** dialog, view the list of changes to your project dependencies. Click the **OK** button.
     1. In the **License Acceptance** dialog, view the license information for each package and then click the **I Accept** button.
@@ -30,7 +30,7 @@
 
 ## Implementing A Model Class
 
-1. In the **Solution Explorer** pane, right-click the **edX.DataApp.Lab.CoreConsole** project, hover over the **Add** menu option and then select the **New Item...** menu option.
+1. In the **Solution Explorer** pane, right-click the **PASS.DataApp.DXConsole** project, hover over the **Add** menu option and then select the **New Item...** menu option.
 1. In the **Add New Item** dialog, perform the following actions:
     1. Expand the **Visual C# Items** node, and then select the **Code** node. 
     1. Select the **Class** template.
@@ -98,34 +98,32 @@
     ```
 1. Save and close the **Product.cs** class.
 
-## Implementing A Entity Framework Core Context Class
+## Implementing A Entity Framework Context Class
 
-1. In the **Solution Explorer** pane, right-click the **edX.DataApp.Lab.CoreConsole** project, hover over the **Add** menu option and then select the **New Item...** menu option.
+1. In the **Solution Explorer** pane, right-click the **PASS.DataApp.DXConsole** project, hover over the **Add** menu option and then select the **New Item...** menu option.
 1. In the **Add New Item** dialog, perform the following actions:
     1. Expand the **Visual C# Items** node, and then select the **Code** node. 
     1. Select the **Class** template.
     1. In the **Name** box, enter the value **ContosoContext.cs**.
     1. Click the **OK** button. 
 1. Once the file has been created, Visual Studio will automatically open the **ContosoContext.cs** class file. Leave this file open.
-1. In the currently open **ContosoContext.cs** file, add a new **using** statement for the **Microsoft.EntityFrameworkCore** namespace:
+1. In the currently open **ContosoContext.cs** file, add a new **using** statement for the **System.Data.Entity** namespace:
     ```
-    using Microsoft.EntityFrameworkCore;
+    using System.Data.Entity;
     ```
 1. Update the **ContosoContext** class definition by setting a **public** accessor and inheriting from the **DbContext** class:
     ```
     public class ContosoContext : DbContext
     ```
-1. Add a new method named **OnConfiguring** to the **ContosoContext** class using the following signature:
+1. Add a new constructor to the **ContosoContext** class using the following signature that contains no parameters:
     ```
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public ContosoContext() 
+    { }
     ```
-1. Within the **OnConfiguring** method,  add a new line to create a *string* variable named **connectionString** with a value of ``Data Source=(localdb)\MSSQLLOCALDB;Initial Catalog=ContosoDB;``:
+1. Update the new constructor by adding a call to the base class and passing in the following a string parameter with a value of ``Data Source=(localdb)\MSSQLLOCALDB;Initial Catalog=ContosoDB;``:
     ```
-    string connectionString = @"Data Source=(localdb)\MSSQLLOCALDB;Initial Catalog=ContosoDB;";
-    ```
-1. After the last line of code, add a another line of code to use the **connectionString** variable as a parameter to the **UseSqlServer** method of the **optionsBuilder** variable:
-    ```
-    optionsBuilder.UseSqlServer(connectionString);
+    public ContosoContext() : base(@"Data Source=(localdb)\MSSQLLOCALDB;Initial Catalog=ContosoDB;")
+    { }
     ```
 1. In the **ContosoContext** class, add a new **DbSet<Product>** property named **Products** with public **get** and **set** accessors and the **virtual** keyword:
     ```
@@ -135,34 +133,27 @@
     ```
     public class ContosoContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            string connectionString = @"Data Source=(localdb)\MSSQLLOCALDB;Initial Catalog=ContosoDB;";
-            optionsBuilder.UseSqlServer(connectionString);
-        }
+        public ContosoContext() : base(@"Data Source=(localdb)\MSSQLLOCALDB;Initial Catalog=ContosoDB;")
+        { }
 
         public virtual DbSet<Product> Products { get; set; }
     }
     ```
 1. Save and close the **ContosoContext.cs** class.
 
-## Implementing Basic Entity Framework Core Logic
+## Implementing Basic Entity Framework Logic
 
 1. In the currently open **Program.cs** file, ensure that an **using** statement exists for the **System** namespace:
     ```
     using System;
     ```
-1. Add a new **using** statement for the **System.Threading.Tasks** namespace:
+1. Ensure that an **using** statement exists for the **System.Threading.Tasks** namespace:
     ```
     using System.Threading.Tasks;
     ```
-1. Add a new **using** statement for the **Microsoft.EntityFrameworkCore.Infrastructure** namespace:
+1. Add a new **using** statement for the **System.Data.Entity** namespace:
     ```
-    using Microsoft.EntityFrameworkCore.Infrastructure;
-    ```
-1. Add a new **using** statement for the **Microsoft.EntityFrameworkCore.Storage** namespace:
-    ```
-    using Microsoft.EntityFrameworkCore.Storage;
+    using System.Data.Entity;
     ```
 1. Add a new **RunAsync** method with the following signature:
     ```
@@ -174,17 +165,13 @@
     {
     }
     ```
-1. Within the using block, add a new line of code to get an instance of the **IDatabaseCreator** service using the generic **GetService** method of the **context** variable and cast the result to the **RelationalDatabaseCreator** type:
+1. Within the using block, add a new line of code to execute a string query against the SQL database asynchronously and then return the result as a string:
     ```
-    var creator = context.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
+    string response = await context.Database.SqlQuery<string>("SELECT @@VERSION").SingleOrDefaultAsync();
     ```
-1. After the last line of code within the using block, add a new line of code to **await** the asynchronous invocation of the **creator** variable's **ExistsAsync** method:
+1. Add a new line of code to write the message **"Connection Successful"** to the console window along with the output of the previous line of code:
     ```
-    await creator.ExistsAsync();
-    ```
-1. After the last line of code within the using block, add a new line of code to write the message **"Connection Successful"** to the console window:
-    ```
-    Console.WriteLine("Connection Successful");
+    Console.WriteLine($"Connection Successful: {response}");
     ```
 1. Your **RunAsync** method should now look like this:
     ```
@@ -192,9 +179,8 @@
     {
         using (ContosoContext context = new ContosoContext())
         {
-            var creator = context.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
-            await creator.ExistsAsync();
-            Console.WriteLine("Connection Successful");
+            string response = await context.Database.SqlQuery<string>("SELECT @@VERSION").SingleOrDefaultAsync();
+            Console.WriteLine($"Connection Successful: {response}");
         }
     }
     ```

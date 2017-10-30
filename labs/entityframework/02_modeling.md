@@ -4,7 +4,7 @@
 
 1. Open **Visual Studio 2017**.
 1. At the top of the Visual Studio window; click the **File** menu and hover over the **Recent Projects and Solutions** option.
-1. Select the **edX.DataApp.CoreConsole** solution.
+1. Select the **PASS.DataApp.DXConsole** solution.
 1. Wait for Visual Studio to open the existing solution.
 
 ## Modify a Database Table
@@ -49,7 +49,7 @@
 ## Update an Entity Framework Model Class
 
 1. At the top of the Visual Studio window; click the **View** menu and then select the **Solution Explorer** option.
-1. In the **Solution Explorer** pane; expand the **edX.DataApp.Console** project and then double-click the **Product.cs** file.
+1. In the **Solution Explorer** pane; expand the **PASS.DataApp.DXConsole** project and then double-click the **Product.cs** file.
 1. In the currently open **Product.cs** file, ensure that an **using** statement exists for the **System** namespace:
     ```
     using System;
@@ -95,7 +95,7 @@
 ## Implement Query Logic
 
 1. At the top of the Visual Studio window; click the **View** menu and then select the **Solution Explorer** option.
-1. In the **Solution Explorer** pane; right-click the **edX.DataApp.Console** project, hover over the **Add** menu option, and then select the **New Item...** menu option.
+1. In the **Solution Explorer** pane; right-click the **PASS.DataApp.DXConsole** project, hover over the **Add** menu option, and then select the **New Item...** menu option.
 1. In the **Add New Item** dialog, perform the following actions:
     1. Expand the **Visual C# Items** node, and then select the **Code** node. 
     1. Select the **Class** template.
@@ -160,8 +160,8 @@
 ## Validate Solution
 
 1. At the top of the Visual Studio window; click the **View** menu and then select the **Solution Explorer** option.
-1. Locate and expand the **edX.DataApp.Console** project.
-1. Within the **edX.DataApp.Console** project, locate and double-click the **Program.cs** file.
+1. Locate and expand the **PASS.DataApp.DXConsole** project.
+1. Within the **PASS.DataApp.DXConsole** project, locate and double-click the **Program.cs** file.
 1. Locate the **RunAsync** method with the following signature:
     ```
     static async Task RunAsync()
@@ -170,9 +170,8 @@
     ```
     using (ContosoContext context = new ContosoContext())
     {
-        var creator = context.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
-        await creator.ExistsAsync();
-        Console.WriteLine("Connection Successful");
+        string response = await context.Database.SqlQuery<string>("SELECT @@VERSION").SingleOrDefaultAsync();
+        Console.WriteLine($"Connection Successful: {response}");
     }
     ```
 1. Within the **using** block, add the following line of code after the last line of existing code to create a new instance of the **ProductQuery** class and invoke the **RunLogic** method:
@@ -185,8 +184,8 @@
     {
         using (ContosoContext context = new ContosoContext())
         {
-            var creator = context.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
-            await creator.ExistsAsync();
+            string response = await context.Database.SqlQuery<string>("SELECT @@VERSION").SingleOrDefaultAsync();
+            Console.WriteLine($"Connection Successful: {response}");
             Console.WriteLine("Connection Successful");
             new ProductQuery().RunLogic(context);
         }

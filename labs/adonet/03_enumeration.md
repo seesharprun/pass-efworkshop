@@ -5,13 +5,13 @@
 
 1. Open **Visual Studio 2017**.
 1. At the top of the Visual Studio window, click the **File** menu and hover over the **Recent Projects and Solutions** option.
-1. Select the **edX.DataApp.Console** solution.
+1. Select the **PASS.DataApp.Console** solution.
 1. Wait for Visual Studio to open the existing solution.
 
 ## Create a SQLCommand Instance
 
 1. At the top of the Visual Studio window; click the **View** menu and then select the **Solution Explorer** option.
-1. In the **Solution Explorer** pane; right-click the **edX.DataApp.Console** project, hover over the **Add** menu option, and then select the **New Item...** menu option.
+1. In the **Solution Explorer** pane; right-click the **PASS.DataApp.Console** project, hover over the **Add** menu option, and then select the **New Item...** menu option.
 1. In the **Add New Item** dialog, perform the following actions:
     1. Expand the **Visual C# Items** node, and then select the **Code** node. 
     1. Select the **Class** template.
@@ -102,8 +102,8 @@
 ## Validate Solution
 
 1. At the top of the Visual Studio window; click the **View** menu and then select the **Solution Explorer** option.
-1. Locate and expand the **edX.DataApp.Console** project.
-1. Within the **edX.DataApp.Console** project, locate and double-click the **Program.cs** file.
+1. Locate and expand the **PASS.DataApp.Console** project.
+1. Within the **PASS.DataApp.Console** project, locate and double-click the **Program.cs** file.
 1. Locate the **RunAsync** method with the following signature:
     ```
     static async Task RunAsync()
@@ -139,8 +139,8 @@
 ## Update the RunAsync Method
 
 1. At the top of the Visual Studio window; click the **View** menu and then select the **Solution Explorer** option.
-1. Locate and expand the **edX.DataApp.Console** project.
-1. Within the **edX.DataApp.Console** project, locate and double-click the **Program.cs** file.
+1. Locate and expand the **PASS.DataApp.Console** project.
+1. Within the **PASS.DataApp.Console** project, locate and double-click the **Program.cs** file.
 1. Locate the **RunAsync** method with the following signature:
     ```
     static async Task RunAsync()
