@@ -58,7 +58,7 @@ SQL Server 2016 LocalDb is routinely installed as part of your Visual Studio ins
 
 We will use an example database for the ficitional Contoso corporation throughout the course. In this task, we will install the schema and data necessary for the database.
 
-1. Download the Contoso database **Data-Tier Application** file from the following link: [files/contoso.dacpac](../files/contoso.dacpac).
+1. Download the Contoso database **Data-Tier Application** file from the following link: [contoso.dacpac](../files/contoso.dacpac).
 1. Save the downloaded **.dacpac** file to your local machine.
 1. Return to the already running **Visual Studio** instance.
 1. In the **Server Explorer** pane, right-click the **localdb** connection node and select the **Browse in SQL Server Object Explorer** option.
